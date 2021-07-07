@@ -2,34 +2,62 @@ import sys
 import time
 import RPi.GPIO as GPIO
 
-mode=GPIO.getmode()
+OUT1 = 26
+OUT2 = 20
+OUT3 = 19
+OUT4 = 16
+runTime = 0.75
+waitTime = 0.1
+turnTime = 0.25
 
-GPIO.cleanup()
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(OUT1, GPIO.OUT, initial = GPIO.LOW)
+GPIO.setup(OUT2, GPIO.OUT, initial = GPIO.LOW)
+GPIO.setup(OUT3, GPIO.OUT, initial = GPIO.LOW)
+GPIO.setup(OUT4, GPIO.OUT, initial = GPIO.LOW)
 
+def forward(inputRunTime):
+    GPIO.output(OUT2, GPIO.HIGH)
+    GPIO.output(OUT3, GPIO.HIGH)
+    print("Moving Forward")
+    time.sleep(inputRunTime)
+    GPIO.output(OUT2, GPIO.LOW)
+    GPIO.output(OUT3, GPIO.LOW)
 
-Forward=26
-Backward=20
-sleeptime=1
+def reverse(inputRunTime):
+    GPIO.output(OUT1, GPIO.HIGH)
+    GPIO.output(OUT4, GPIO.HIGH)
+    print("Moving Backward")
+    time.sleep(inputRunTime)
+    GPIO.output(OUT1, GPIO.LOW)
+    GPIO.output(OUT4, GPIO.LOW)
+    
+def left(inputRunTime):
+    GPIO.output(OUT2, GPIO.HIGH)
+    GPIO.output(OUT4, GPIO.HIGH)
+    print("Turning Right")
+    time.sleep(inputRunTime)
+    GPIO.output(OUT2, GPIO.LOW)
+    GPIO.output(OUT4, GPIO.LOW)
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(Forward, GPIO.OUT)
-GPIO.setup(Backward, GPIO.OUT)
+def right(inputRunTime):
+    GPIO.output(OUT1, GPIO.HIGH)
+    GPIO.output(OUT3, GPIO.HIGH)
+    print("Turning Left")
+    time.sleep(inputRunTime)
+    GPIO.output(OUT1, GPIO.LOW)
+    GPIO.output(OUT3, GPIO.LOW)
 
-def forward(x):
-GPIO.output(Forward, GPIO.HIGH)
-print("Moving Forward")
-time.sleep(x)
-GPIO.output(Forward, GPIO.LOW)
+def wait(inputRunTime):
+    print("Waiting")
+    time.sleep(inputRunTime)
 
-def reverse(x):
-GPIO.output(Backward, GPIO.HIGH)
-print("Moving Backward")
-time.sleep(x)
-GPIO.output(Backward, GPIO.LOW)
+try:
+    while(GPIO.HIGH):
+        forward(runTime)
+        wait(waitTime)
+        right(turnTime)
 
-while (1):
-
-forward(5)
-
-reverse(5)
-GPIO.cleanup()
+except KeyboardInterrupt:
+    GPIO.cleanup()
