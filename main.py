@@ -2,10 +2,10 @@ import sys
 import time
 import RPi.GPIO as GPIO
 
-OUT1 = 26
-OUT2 = 20
-OUT3 = 19
-OUT4 = 16
+OUT1 = 19
+OUT2 = 16
+OUT3 = 26
+OUT4 = 20
 runTime = 0.75
 waitTime = 0.1
 turnTime = 0.25
@@ -54,10 +54,16 @@ def wait(inputRunTime):
     time.sleep(inputRunTime)
 
 try:
-    while(GPIO.HIGH):
-        forward(runTime)
-        wait(waitTime)
-        right(turnTime)
+    # while(GPIO.HIGH):
+    #     forward(runTime)
+    #     wait(waitTime)
+    #     right(turnTime)
+
+    forward(runTime)
+    wait(waitTime)
+    right(turnTime)
 
 except KeyboardInterrupt:
     GPIO.cleanup()
+
+GPIO.cleanup()
