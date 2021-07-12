@@ -33,7 +33,8 @@ void setup()
     gpioSetMode(enable, PI_OUTPUT);
 
     offMotors();
-    gpioPWM(enable, 255);
+    gpioSetPWMrange(enable, 100)
+    gpioPWM(enable, 100);
 }
 
 void offMotors()
@@ -53,11 +54,11 @@ void movementTest()
 {
     moveForward(runTime);
     wait(waitTime);
-    moveBackward(turnTime);
+    moveBackward(runTime);
     wait(waitTime);
     turnRight(turnTime);
     wait(waitTime);
-    turnLeft(runTime);
+    turnLeft(turnTime);
     wait(waitTime);
     moveRight(runTime);
     wait(waitTime);
@@ -70,7 +71,7 @@ void PWMtest()
 
     for(int i = 1; i <= 10; i ++)
     {
-        gpioPWM(enable, i * (255 / 10));
+        gpioPWM(enable, i * 10);
         moveForward(1);
     }
 }

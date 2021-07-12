@@ -47,11 +47,11 @@ def offMotors():
 def movementTest():
     moveForward(runTime)
     wait(waitTime)
-    moveBackward(turnTime)
+    moveBackward(runTime)
     wait(waitTime)
     turnRight(turnTime)
     wait(waitTime)
-    turnLeft(runTime)
+    turnLeft(turnTime)
     wait(waitTime)
     moveRight(runTime)
     wait(waitTime)
