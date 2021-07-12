@@ -45,37 +45,17 @@ def offMotors():
     GPIO.output(leftBack_Backward, GPIO.LOW)
 
 def test(inputRunTime):
-    GPIO.output(rightFront_Forward, GPIO.HIGH)
-    time.sleep(inputRunTime)
-    GPIO.output(leftFront_Forward, GPIO.HIGH)
-    time.sleep(inputRunTime)
-    GPIO.output(leftBack_Forward, GPIO.HIGH)
-    time.sleep(inputRunTime)
-    GPIO.output(rightBack_Forward, GPIO.HIGH)
-    time.sleep(2 * inputRunTime)
-    print("Forward")
-
-    GPIO.output(rightFront_Forward, GPIO.LOW)
-    GPIO.output(leftFront_Forward, GPIO.LOW)
-    GPIO.output(leftBack_Forward, GPIO.LOW)
-    GPIO.output(rightBack_Forward, GPIO.LOW)
-    print("Motors OFF")
-
-    GPIO.output(rightFront_Backward, GPIO.HIGH)
-    time.sleep(inputRunTime)
-    GPIO.output(leftFront_Backward, GPIO.HIGH)
-    time.sleep(inputRunTime)
-    GPIO.output(leftBack_Backward, GPIO.HIGH)
-    time.sleep(inputRunTime)
-    GPIO.output(rightBack_Backward, GPIO.HIGH)
-    time.sleep((2 * inputRunTime))
-    print("Backward")
-
-    GPIO.output(rightFront_Backward, GPIO.LOW)
-    GPIO.output(leftFront_Backward, GPIO.LOW)
-    GPIO.output(leftBack_Backward, GPIO.LOW)
-    GPIO.output(rightBack_Backward, GPIO.LOW)
-    print("Motors OFF")
+    moveForward(runTime)
+    wait(waitTime)
+    moveBackward(turnTime)
+    wait(waitTime)
+    turnRight(turnTime)
+    wait(waitTime)
+    turnLeft(runTime)
+    wait(waitTime)
+    moveRight(runTime)
+    wait(waitTime)
+    moveLeft(runTime)
 
 def moveForward(inputRunTime):
     GPIO.output(rightFront_Forward, GPIO.HIGH)
@@ -142,21 +122,12 @@ def wait(inputWaitTime):
     time.sleep(inputWaitTime)
 
 try:
-    setup();
+    setup()
+    test()
 
     while(GPIO.HIGH):
-        moveForward(runTime)
-        wait(waitTime)
-        turnRight(turnTime)
-
-    # forward(runTime)
-    # wait()
-    # right(turnTime)
-    # wait()
-    # left(turnTime)
-    # wait()
-    # backward(runTime)
-
+        moveRight(runTime)
+        moveLeft(runTime)
 
 except KeyboardInterrupt:
     GPIO.cleanup()
