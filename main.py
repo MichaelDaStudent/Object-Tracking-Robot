@@ -44,7 +44,7 @@ def offMotors():
     GPIO.output(rightBack_Backward, GPIO.LOW)
     GPIO.output(leftBack_Backward, GPIO.LOW)
 
-def test(inputRunTime):
+def movementTest():
     moveForward(runTime)
     wait(waitTime)
     moveBackward(turnTime)
@@ -56,6 +56,14 @@ def test(inputRunTime):
     moveRight(runTime)
     wait(waitTime)
     moveLeft(runTime)
+
+def PWMtest():
+    p = GPIO.PWM(enable, 500)
+    p.start(100)
+
+    for i in range(1, 11):
+        p.ChangeDutyCycle(enable, i * 10)
+        moveForward(1)
 
 def moveForward(inputRunTime):
     GPIO.output(rightFront_Forward, GPIO.HIGH)
@@ -123,10 +131,12 @@ def wait(inputWaitTime):
 
 try:
     setup()
+    movementTest()
+    PWMtest()
 
-    while True:
-        moveRight(runTime)
-        moveLeft(runTime)
+    # while True:
+    #     moveRight(runTime)
+    #     moveLeft(runTime)
 
 except KeyboardInterrupt:
     GPIO.cleanup()

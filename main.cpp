@@ -49,7 +49,7 @@ void offMotors()
     gpioWrite(leftBack_Backward, 0);
 }
 
-void movementTest(int inputRunTime)
+void movementTest()
 {
     moveForward(runTime);
     wait(waitTime);
@@ -64,7 +64,7 @@ void movementTest(int inputRunTime)
     moveLeft(runTime);
 }
 
-void PWMtest(int inputRunTime)
+void PWMtest()
 {
     gpioPWM(enable, 0);
 
@@ -159,8 +159,8 @@ int main()
     {
         setup();
 
-        movementTest(runTime);
-        PWMtest(runTime);
+        movementTest();
+        PWMtest();
 
         // while(true)
         // {
