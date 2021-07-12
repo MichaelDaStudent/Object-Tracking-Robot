@@ -63,6 +63,7 @@ def PWMtest():
 
     for i in range(1, 11):
         p.ChangeDutyCycle(enable, i * 10)
+        print(i)
         moveForward(1)
 
 def moveForward(inputRunTime):
