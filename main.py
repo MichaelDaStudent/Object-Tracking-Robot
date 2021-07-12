@@ -123,9 +123,8 @@ def wait(inputWaitTime):
 
 try:
     setup()
-    test()
 
-    while(GPIO.HIGH):
+    while True:
         moveRight(runTime)
         moveLeft(runTime)
 
