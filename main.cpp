@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <pigpio.h>
 
 const int rightFront_Forward = 26;
 const int rightBack_Forward = 5;
