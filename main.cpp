@@ -72,7 +72,7 @@ void PWMtest()
     for(int i = 1; i <= 10; i ++)
     {
         gpioPWM(enable, i * 10);
-        moveForward(1);
+        moveForward(1000);
     }
 }
 
