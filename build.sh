@@ -1,0 +1,1 @@
+g++ -Wall -pthread -o ObjectTrackingRobot ./**.cpp -lpigpio -lrt && ./ObjectTrackingRobot
