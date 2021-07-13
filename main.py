@@ -59,12 +59,12 @@ def movementTest():
 
 def PWMtest():
     p = GPIO.PWM(enable, 500)
-    p.start(100)
+    p.start(0)
 
-    for i in range(1, 11):
-        p.ChangeDutyCycle(enable, i * 10)
+    for i in range(0, 101):
+        p.ChangeDutyCycle(i)
         print(i)
-        moveForward(1)
+        moveForward(0.1)
 
 def moveForward(inputRunTime):
     GPIO.output(rightFront_Forward, GPIO.HIGH)
@@ -132,7 +132,7 @@ def wait(inputWaitTime):
 
 try:
     setup()
-    movementTest()
+    # movementTest()
     PWMtest()
 
     # while True:
