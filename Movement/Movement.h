@@ -5,24 +5,24 @@
 
 namespace Movement
 {
-    static int runTime = 2000;
-    static int waitTime = 1000;
-    static int turnTime = 500;
+    extern int runTime;
+    extern int waitTime;
+    extern int turnTime;
 
-    static void setup();
-    static void cleanup();
+    void setup();
+    void cleanup();
 
-    static void offMotors();
-    static void wait(int inputWaitTime);
+    void offMotors();
+    void wait(int inputWaitTime);
 
-    static void movementTest();
-    static void PWMtest();
+    void movementTest();
+    void PWMtest();
 
-    static void moveForward(int inputRunTime);
-    static void moveBackward(int inputRunTime);
-    static void moveRight (int inputTurnTime);
-    static void moveLeft(int inputTurnTime);
+    void moveForward(int inputRunTime);
+    void moveBackward(int inputRunTime);
+    void moveRight (int inputTurnTime);
+    void moveLeft(int inputTurnTime);
         
-    static void turnRight(int inputTurnTime);
-    static void turnLeft(int inputTurnTime);
+    void turnRight(int inputTurnTime);
+    void turnLeft(int inputTurnTime);
 };

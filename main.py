@@ -13,8 +13,8 @@ leftBack_Backward = 6
 
 enable = 21
 
-runTime = 2
-waitTime = 1
+runTime = 1
+waitTime = 0.5
 turnTime = 0.5
 
 def setup():
@@ -132,7 +132,7 @@ def wait(inputWaitTime):
 
 try:
     setup()
-    # movementTest()
+    movementTest()
     PWMtest()
 
     # while True:

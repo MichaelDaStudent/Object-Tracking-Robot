@@ -2,17 +2,21 @@
 
 namespace Movement
 {
-    static const int rightFront_Forward = 26;
-    static const int rightBack_Forward = 5;
-    static const int leftFront_Forward = 16;
-    static const int leftBack_Forward = 12;
+    int runTime = 2000;
+    int waitTime = 1000;
+    int turnTime = 500;
     
-    static const int rightFront_Backward = 20;
-    static const int rightBack_Backward = 13;
-    static const int leftFront_Backward = 19;
-    static const int leftBack_Backward = 6;
+    const int rightFront_Forward = 26;
+    const int rightBack_Forward = 5;
+    const int leftFront_Forward = 16;
+    const int leftBack_Forward = 12;
     
-    static const int enable = 21;
+    const int rightFront_Backward = 20;
+    const int rightBack_Backward = 13;
+    const int leftFront_Backward = 19;
+    const int leftBack_Backward = 6;
+    
+    const int enable = 21;
 
     void setup()
     {
@@ -30,7 +34,7 @@ namespace Movement
         gpioSetMode(enable, PI_OUTPUT);
 
         offMotors();
-        gpioSetPWMrange(enable, 100)
+        gpioSetPWMrange(enable, 100);
         gpioPWM(enable, 100);
     }
 
