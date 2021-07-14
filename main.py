@@ -44,6 +44,16 @@ def offMotors():
     GPIO.output(rightBack_Backward, GPIO.LOW)
     GPIO.output(leftBack_Backward, GPIO.LOW)
 
+def motorTest():
+    GPIO.output(rightFront_Forward, GPIO.LOW)
+    wait(waitTime)
+    GPIO.output(leftFront_Forward, GPIO.LOW)
+    wait(waitTime)
+    GPIO.output(rightBack_Forward, GPIO.LOW)
+    wait(waitTime)
+    GPIO.output(leftBack_Forward, GPIO.LOW)
+    wait(waitTime)
+
 def movementTest():
     moveForward(runTime)
     wait(waitTime)
@@ -132,8 +142,7 @@ def wait(inputWaitTime):
 
 try:
     setup()
-    movementTest()
-    PWMtest()
+    motorTest()
 
     # while True:
     #     moveRight(runTime)
