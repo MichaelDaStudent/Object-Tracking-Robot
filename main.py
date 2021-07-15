@@ -1,20 +1,20 @@
 import time
 import RPi.GPIO as GPIO
 
-rightFront_Forward = 26
-rightBack_Forward = 5
-leftFront_Forward = 16
-leftBack_Forward = 12
+rightFront_Forward = 20
+rightBack_Forward = 16
+leftFront_Forward = 13
+leftBack_Forward = 6
 
-rightFront_Backward = 20
-rightBack_Backward = 13
-leftFront_Backward = 19
-leftBack_Backward = 6
+rightFront_Backward = 26
+rightBack_Backward = 19
+leftFront_Backward = 5
+leftBack_Backward = 12
 
 enable = 21
 
-runTime = 1
-waitTime = 0.5
+runTime = 2
+waitTime = 2
 turnTime = 0.5
 
 def setup():
@@ -44,14 +44,30 @@ def offMotors():
     GPIO.output(rightBack_Backward, GPIO.LOW)
     GPIO.output(leftBack_Backward, GPIO.LOW)
 
+def transistorTest():
+    GPIO.setup(4, GPIO.OUT, initial = GPIO.LOW)
+    GPIO.output(4, GPIO.HIGH)
+    wait(waitTime)
+
 def motorTest():
-    GPIO.output(rightFront_Forward, GPIO.LOW)
+    GPIO.output(rightFront_Forward, GPIO.HIGH)
     wait(waitTime)
-    GPIO.output(leftFront_Forward, GPIO.LOW)
+    GPIO.output(rightBack_Forward, GPIO.HIGH) 
     wait(waitTime)
-    GPIO.output(rightBack_Forward, GPIO.LOW)
+    GPIO.output(leftFront_Forward, GPIO.HIGH)
     wait(waitTime)
-    GPIO.output(leftBack_Forward, GPIO.LOW)
+    GPIO.output(leftBack_Forward, GPIO.HIGH)
+    wait(waitTime)
+
+    offMotors()
+
+    GPIO.output(rightFront_Backward, GPIO.HIGH)
+    wait(waitTime)
+    GPIO.output(rightBack_Backward, GPIO.HIGH) 
+    wait(waitTime)
+    GPIO.output(leftFront_Backward, GPIO.HIGH)
+    wait(waitTime)
+    GPIO.output(leftBack_Backward, GPIO.HIGH)
     wait(waitTime)
 
 def movementTest():
@@ -141,8 +157,11 @@ def wait(inputWaitTime):
     time.sleep(inputWaitTime)
 
 try:
-    setup()
-    motorTest()
+    setup() 
+    # motorTest()
+    PWMtest()
+    transistorTest()
+    PWMtest()
 
     # while True:
     #     moveRight(runTime)
