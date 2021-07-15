@@ -158,9 +158,7 @@ def wait(inputWaitTime):
 
 try:
     setup() 
-    # motorTest()
-    PWMtest()
-    transistorTest()
+    motorTest()
     PWMtest()
 
     # while True:
