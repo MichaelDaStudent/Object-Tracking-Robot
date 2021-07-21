@@ -7,11 +7,5 @@ int main()
     Movement::movementTest();
     Movement::PWMtest();
 
-    // while(true)
-    // {
-    //     moveRight(runTime);
-    //     moveLeft(runTime);
-    // }
-
     Movement::cleanup();
 }

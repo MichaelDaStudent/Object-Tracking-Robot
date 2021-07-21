@@ -1,10 +1,11 @@
 #include "Movement.h"
+#define SECONDS_TO_MICRO * 1000000
 
 namespace Movement
 {
-    int runTime = 2000;
-    int waitTime = 1000;
-    int turnTime = 500;
+    int runTime = 2 SECONDS_TO_MICRO;
+    int waitTime = 1 SECONDS_TO_MICRO;
+    int turnTime = 0.5 SECONDS_TO_MICRO;
     
     const int rightFront_Forward = 26;
     const int rightBack_Forward = 5;
@@ -16,7 +17,7 @@ namespace Movement
     const int leftFront_Backward = 19;
     const int leftBack_Backward = 6;
     
-    const int enable = 21;
+    const int enable = 25;
 
     void setup()
     {
@@ -75,10 +76,10 @@ namespace Movement
     {
         gpioPWM(enable, 0);
 
-        for(int i = 1; i <= 10; i ++)
+        for(int i = 1; i <= 100; i ++)
         {
-            gpioPWM(enable, i * 10);
-            moveForward(1);
+            gpioPWM(enable, i);
+            moveForward(0.1 SECONDS_TO_MICRO);
         }
     }
 
@@ -89,7 +90,7 @@ namespace Movement
         gpioWrite(leftBack_Forward, 1);
         gpioWrite(rightBack_Forward, 1);
 
-        printf("Moving Forward");
+        printf("Moving Forward\n");
         gpioDelay(inputRunTime);
         offMotors();
     }
@@ -101,7 +102,7 @@ namespace Movement
         gpioWrite(rightBack_Backward, 1);
         gpioWrite(leftBack_Backward, 1);
         
-        printf("Moving Backward");
+        printf("Moving Backward\n");
         gpioDelay(inputRunTime);
         offMotors();
     }
@@ -113,7 +114,7 @@ namespace Movement
         gpioWrite(rightFront_Backward, 1);
         gpioWrite(rightBack_Backward, 1);
         
-        printf("Turning Right");
+        printf("Turning Right\n");
         gpioDelay(inputTurnTime);
         offMotors();
     }
@@ -125,7 +126,7 @@ namespace Movement
         gpioWrite(leftFront_Backward, 1);
         gpioWrite(leftBack_Backward, 1);
         
-        printf("Turning Left");
+        printf("Turning Left\n");
         gpioDelay(inputTurnTime);
         offMotors();
     }
@@ -137,7 +138,7 @@ namespace Movement
         gpioWrite(rightFront_Backward, 1);
         gpioWrite(leftBack_Backward, 1);
         
-        printf("Moving Right");
+        printf("Moving Right\n");
         gpioDelay(inputTurnTime);
         offMotors();
     }
@@ -149,14 +150,14 @@ namespace Movement
         gpioWrite(rightBack_Backward, 1);
         gpioWrite(leftFront_Backward, 1);
         
-        printf("Moving Left");
+        printf("Moving Left\n");
         gpioDelay(inputTurnTime);
         offMotors();
     }
 
     void wait(int inputWaitTime)
     {
-        printf("Waiting");
+        printf("Waiting\n");
         gpioDelay(inputWaitTime);
     }
 }

@@ -157,7 +157,7 @@ def wait(inputWaitTime):
     time.sleep(inputWaitTime)
 
 try:
-    setup() 
+    setup()
     motorTest()
     PWMtest()
 
