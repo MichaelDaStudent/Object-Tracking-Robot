@@ -3,19 +3,19 @@
 
 namespace Movement
 {
-    int runTime = 2 SECONDS_TO_MICRO;
-    int waitTime = 1 SECONDS_TO_MICRO;
-    int turnTime = 0.5 SECONDS_TO_MICRO;
+    float runTime = 1 SECONDS_TO_MICRO;
+    float waitTime = 1 SECONDS_TO_MICRO;
+    float turnTime = 0.2 SECONDS_TO_MICRO;
     
     const int rightFront_Forward = 26;
-    const int rightBack_Forward = 5;
+    const int rightBack_Forward = 6;
     const int leftFront_Forward = 16;
-    const int leftBack_Forward = 12;
+    const int leftBack_Forward = 5;
     
     const int rightFront_Backward = 20;
-    const int rightBack_Backward = 13;
-    const int leftFront_Backward = 19;
-    const int leftBack_Backward = 6;
+    const int rightBack_Backward = 12;
+    const int leftFront_Backward = 16;
+    const int leftBack_Backward = 5;
     
     const int enable = 25;
 
@@ -41,6 +41,7 @@ namespace Movement
 
     void cleanup()
     {
+        offMotors();
         gpioTerminate();
     }
 
@@ -55,6 +56,29 @@ namespace Movement
         gpioWrite(rightBack_Backward, 0);
         gpioWrite(leftFront_Backward, 0);
         gpioWrite(leftBack_Backward, 0);
+    }
+
+    void motorTest()
+    {
+        gpioWrite(rightFront_Forward, 1);
+        wait(runTime);
+        gpioWrite(rightBack_Forward, 1);
+        wait(runTime);
+        gpioWrite(leftFront_Forward, 1);
+        wait(runTime);
+        gpioWrite(leftBack_Forward, 1);
+        wait(runTime);
+
+        offMotors();
+
+        gpioWrite(rightFront_Backward, 1);
+        wait(runTime);
+        gpioWrite(rightBack_Backward, 1);
+        wait(runTime);
+        gpioWrite(leftFront_Backward, 1);
+        wait(runTime);
+        gpioWrite(leftBack_Backward, 1);
+        wait(runTime);
     }
 
     void movementTest()
@@ -79,6 +103,7 @@ namespace Movement
         for(int i = 1; i <= 100; i ++)
         {
             gpioPWM(enable, i);
+            printf("%d ", i);
             moveForward(0.1 SECONDS_TO_MICRO);
         }
     }

@@ -1,13 +1,14 @@
 #pragma once
 
+#include <iostream>
 #include <stdio.h>
 #include <pigpio.h>
 
 namespace Movement
 {
-    extern int runTime;
-    extern int waitTime;
-    extern int turnTime;
+    extern float runTime;
+    extern float waitTime;
+    extern float turnTime;
 
     void setup();
     void cleanup();
@@ -15,6 +16,7 @@ namespace Movement
     void offMotors();
     void wait(int inputWaitTime);
 
+    void motorTest();
     void movementTest();
     void PWMtest();
 
