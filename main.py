@@ -1,21 +1,21 @@
 import time
 import RPi.GPIO as GPIO
 
-rightFront_Forward = 26
-rightBack_Forward = 6
-leftFront_Forward = 16
-leftBack_Forward = 5
+rightFront_Forward = 20
+rightBack_Forward = 16
+leftFront_Forward = 13
+leftBack_Forward = 6
 
-rightFront_Backward = 20
-rightBack_Backward = 12
-leftFront_Backward = 19
-leftBack_Backward = 13
+rightFront_Backward = 26
+rightBack_Backward = 19
+leftFront_Backward = 5
+leftBack_Backward = 12
 
-enable = 25
+enable = 21
 
-runTime = 1
-waitTime = 1
-turnTime = 0.2
+runTime = 2
+waitTime = 2
+turnTime = 0.5
 
 def setup():
     GPIO.setmode(GPIO.BCM)
@@ -158,9 +158,12 @@ def wait(inputWaitTime):
 
 try:
     setup()
-    # motorTest()
-    # PWMtest()
-    movementTest()
+    motorTest()
+    PWMtest()
+
+    # while True:
+    #     moveRight(runTime)
+    #     moveLeft(runTime)
 
 except KeyboardInterrupt:
     GPIO.cleanup()

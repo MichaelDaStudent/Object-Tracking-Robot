@@ -3,9 +3,9 @@
 int main()
 {
     Movement::setup();
-    // Movement::motorTest();
-    // Movement::PWMtest();
+
     Movement::movementTest();
+    Movement::PWMtest();
 
     Movement::cleanup();
 }
