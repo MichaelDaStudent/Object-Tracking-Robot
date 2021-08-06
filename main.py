@@ -5,17 +5,17 @@ runTime = 2
 waitTime = 1
 turnTime = 0.5
 
-rightFront_Forward = 26;
-rightBack_Forward = 5;
-leftFront_Forward = 16;
-leftBack_Forward = 12;
+rightFront_Forward = 26
+rightBack_Forward = 5
+leftFront_Forward = 16
+leftBack_Forward = 12
     
-rightFront_Backward = 20;
-rightBack_Backward = 13;
-leftFront_Backward = 19;
-leftBack_Backward = 6;
+rightFront_Backward = 20
+rightBack_Backward = 13
+leftFront_Backward = 19
+leftBack_Backward = 6
 
-enable = 25;
+enable = 25
 
 def setup():
     GPIO.setmode(GPIO.BCM)
