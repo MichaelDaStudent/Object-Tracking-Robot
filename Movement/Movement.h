@@ -25,4 +25,7 @@ namespace Movement
         
     void turnRight(int inputTurnTime);
     void turnLeft(int inputTurnTime);
+
+    void improvedTurn(float inputAngle, float inputDistance, int inputTurnTime);
+    void improvedTurn(float inputAngle, float inputDistance);
 };
