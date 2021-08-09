@@ -119,22 +119,22 @@ namespace Movement
         offMotors();
     }
 
-    void improvedTurn(float inputAngle, float inputDistance, int inputTurnTime)
-    {
-        std::string direction = "";
-        float anglePercent = (inputAngle / 360) * 100;
-        float distancePercent = inputDistance * 100;
+    // void improvedTurn(float inputAngle, float inputDistance, int inputTurnTime)
+    // {
+    //     std::string direction = "";
+    //     float anglePercent = (inputAngle / 360) * 100;
+    //     float distancePercent = inputDistance * 100;
 
-        if(anglePercent == 0)
-        {
+    //     if(anglePercent == 0)
+    //     {
 
-        }
-    }
+    //     }
+    // }
 
-    void improvedTurn(float inputAngle, float inputDistance)
-    {
-        improvedTurn(inputAngle, inputDistance, 3 SECONDS_TO_MICRO);
-    }
+    // void improvedTurn(float inputAngle, float inputDistance)
+    // {
+    //     improvedTurn(inputAngle, inputDistance, 3 SECONDS_TO_MICRO);
+    // }
 
 
 
