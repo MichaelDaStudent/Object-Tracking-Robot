@@ -16,9 +16,6 @@ class JoystickController
         this.active = false;
         this.value = { x: 0, y: 0 };
 
-        this.angle = 0;
-        this.distance = 0;
-
         let self = this;
 
         function handleDown(event)
@@ -77,9 +74,6 @@ class JoystickController
             const xPosition = distance * Math.cos(angle);
             const yPosition = distance * Math.sin(angle);
 
-            self.angle = angle;
-            self.distance = distance;
-
             // Move stick image to new position.
             stick.style.transform = `translate3d(${xPosition}px, ${yPosition}px, 0px)`;
 
@@ -114,8 +108,10 @@ class JoystickController
             self.value = { x: 0, y: 0 };
             self.touchId = null;
             self.active = false;
-            self.angle = 0;
-            self.distance = 0;
+        }
+
+        function getData()
+        {
         }
 
         stick.addEventListener("mousedown", handleDown);
