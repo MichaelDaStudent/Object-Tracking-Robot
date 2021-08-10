@@ -114,7 +114,8 @@ class JoystickController
             self.value = { x: 0, y: 0 };
             self.touchId = null;
             self.active = false;
-            self_angle = 0;
+            self.angle = 0;
+            self.distance = 0;
         }
 
         stick.addEventListener("mousedown", handleDown);
@@ -131,13 +132,13 @@ class JoystickController
 let joystick1 = new JoystickController("stick1", 64, 8);
 let joystick2 = new JoystickController("stick2", 64, 8);
 
-var controller_json = {
+var controllerJSON = {
     joystick1: { x: 0, y: 0 },
     joystick2: { x: 0, y: 0 },
 };
 
-var current_value = "";
-var previous_value = "";
+var currentValue = "";
+var previousValue = "";
 
 function update()
 {
@@ -150,17 +151,18 @@ function loop()
     requestAnimationFrame(loop);
     update();
 
-    controller_json.joystick1 = joystick1.value;
-    controller_json.joystick2 = joystick2.value;
+    controllerJSON.joystick1 = joystick1.value;
+    controllerJSON.joystick2 = joystick2.value;
 
-    current_value = JSON.stringify(controller_json);
+    currentValue = JSON.stringify(controllerJSON);
     
-    if(current_value != previous_value)
+    // Socket Send
+    if(currentValue != previousValue)
     {
-        ws.send(current_value);
+        socket.emit("joystickData", controllerJSON);
     }
 
-    previous_value = current_value;
+    previousValue = currentValue;
 }
 
 loop(); 

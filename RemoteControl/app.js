@@ -1,23 +1,28 @@
 const express = require("express");
-const WebSocketServer = require("ws").Server;
+const socket = require("socket.io");
 
+// App setup.
 const app = express();
-app.listen(8080, () => {
+
+const server = app.listen(8080, () => {
   console.log("Server starting on port 8080")
 });
 
+// Accessing the webpage.
 app.use(express.static(__dirname));
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/Webpage/webpage.html");
-})
+});
 
-const wss = new WebSocketServer({port: 40510});
+// Socket setup.
+const io = socket(server);
 
-wss.on("connection", function(ws)
-{
-  ws.on("message", function(message)
-  {
-    console.log("server received: " + message);
-    ws.send('hello from server');
-  })
+io.on("connection", (socket) => {
+  console.log(socket.id);
+
+  // Socket Receive
+  socket.on("joystickData", (joystickJSON) => {
+    console.log(joystickJSON);
+  });
 });
