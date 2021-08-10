@@ -10,12 +10,12 @@ class JoystickController
 
         // Location from which drag begins, used to calculate offsets.
         this.dragStart = null;
-        // T touch identifier in case multiple joysticks present.
+        // Touch identifier in case multiple joysticks present.
         this.touchId = null;
 
         this.active = false;
         this.value = { x: 0, y: 0 };
-        
+
         this.angle = 0;
         this.distance = 0;
 
@@ -41,7 +41,7 @@ class JoystickController
                     x: event.clientX,
                     y: event.clientY,
                 };
-            
+
             // If this is a touch event, keep track of which one.
             if(event.changedTouches)
                 self.touchId = event.changedTouches[0].identifier;
@@ -119,10 +119,10 @@ class JoystickController
 
         stick.addEventListener("mousedown", handleDown);
         stick.addEventListener("touchstart", handleDown);
-        
+
         document.addEventListener("mousemove", handleMove, {passive: false,});
         document.addEventListener("touchmove", handleMove, {passive: false,});
-        
+
         document.addEventListener("mouseup", handleUp);
         document.addEventListener("touchend", handleUp);
     }
@@ -135,6 +135,9 @@ var controller_json = {
     joystick1: { x: 0, y: 0 },
     joystick2: { x: 0, y: 0 },
 };
+
+var current_value = "";
+var previous_value = "";
 
 function update()
 {
@@ -150,7 +153,14 @@ function loop()
     controller_json.joystick1 = joystick1.value;
     controller_json.joystick2 = joystick2.value;
 
-    ws.send(JSON.stringify(controller_json));
+    current_value = JSON.stringify(controller_json);
+    
+    if(current_value != previous_value)
+    {
+        ws.send(current_value);
+    }
+
+    previous_value = current_value;
 }
 
-loop();
+loop(); 
