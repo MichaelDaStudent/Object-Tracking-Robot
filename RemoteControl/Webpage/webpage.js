@@ -89,7 +89,6 @@ class JoystickController
 
             const xPercent = parseFloat((xPosition2 / maxDistance).toFixed(4));
             const yPercent = parseFloat((yPosition2 / maxDistance).toFixed(4));
-
             self.value = { x: xPercent, y: yPercent };
         }
 
