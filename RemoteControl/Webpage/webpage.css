@@ -1,0 +1,37 @@
+body {
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+}
+
+hr {border: 1px solid rgb(124, 124, 124)}
+
+#status1 {color: red}
+#status2 {color: blue}
+
+#box1 {
+    border: 1px solid red;
+    width: 128px;
+    left: 10px;
+    top: 150px;
+    position: absolute;
+}
+
+#box2 {
+    border: 1px solid blue;
+    width: 128px;
+    left: 210px;
+    top: 150px;
+    position: absolute;
+}
+
+#stick1 {
+    left: 32px;
+    top: 32px;
+    position: absolute;
+}
+
+#stick2 {
+    left: 32px;
+    top: 32px;
+    position: absolute;
+}
